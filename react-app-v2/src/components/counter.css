@@ -1,0 +1,12 @@
+.myButtons {
+  text-align: center;
+  margin: 10px;
+  background-color: white;
+  color: green;
+  font-size: 20px;
+}
+
+.container {
+  text-align: center;
+  margin-top: 50px;
+}
