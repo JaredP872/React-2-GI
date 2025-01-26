@@ -1,5 +1,5 @@
 // Imports the useState hook form react
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // imports the Link component from react-router-dom
 import { Link } from "react-router-dom";
@@ -7,7 +7,11 @@ import { Link } from "react-router-dom";
 // defines a functional component named todoListApp using an arrow function. This component ctotains the logic for the todolist app.
 const TodoListApp = () => {
   // initializes a state variable tasks with an empty array and a funcytion setTasks to update it. Tasks stores the liost of todo items where each item is an object containing an id and title.
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    // Retrieve tasks from localStorage when the component loads
+    const savedTasks = localStorage.getItem("tasks");
+    return savedTasks ? JSON.parse(savedTasks) : [];
+  });
 
   // Initializes a state variable task with an empty string and a function setTask to update it. Task stores the current value of the input field where the user types a new todo item.
   const [task, setTask] = useState("");
@@ -20,21 +24,32 @@ const TodoListApp = () => {
     }
     // Creates a new task object with a id Date.now and the task title.
     // Then adds the new task to the existing tasks array using the spread operator.
-    setTasks([...tasks, { id: Date.now(), title: task }]);
+    const newTasks = [...tasks, { id: Date.now(), title: task }];
+    setTasks(newTasks);
+    // Save the updated tasks array to localStorage
+    localStorage.setItem("tasks", JSON.stringify(newTasks));
     // Resets the task input to an empty string. This will allow the user to add new task to the todo list.
     setTask("");
   };
 
   // This limne filters out the task with the specified id from the tasks array and updates the state. This allows the user to remover tasks from the todo list.
   const deleteTask = (id) => {
-    setTasks(tasks.filter((task) => task.id !== id));
+    const updatedTasks = tasks.filter((task) => task.id !== id);
+    setTasks(updatedTasks);
+    // Save the updated tasks array to localStorage
+    localStorage.setItem("tasks", JSON.stringify(updatedTasks));
   };
+
+  // Effect to sync tasks with localStorage whenever tasks change
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   // Defines the JSX block to define the components UI.
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
       {/* Displays the main heading for the todo list app. */}
-      <h1>To-Do List App</h1>
+      <h1>Corptechs To-Do list</h1>
 
       {/* Renders an input field where the user can type a new task.  */}
       <div>

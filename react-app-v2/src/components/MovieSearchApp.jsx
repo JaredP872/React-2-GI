@@ -24,6 +24,7 @@ const MovieSearchApp = () => {
       const response = await fetch(
         `http://www.omdbapi.com/?s=${query}&apikey=64f1e89c`
       );
+
       const data = await response.json();
 
       if (data.Response === "True") {
@@ -43,9 +44,8 @@ const MovieSearchApp = () => {
   // Defines an async function that fethces detailed information about a specific movie
   const fetchMovieDetails = async (imdbID) => {
     try {
-      // My API call
       const response = await fetch(
-        `http://www.omdbapi.com/?i=${imdbID}&apikey=64f1e89c`
+        `http://www.omdbapi.com/?i=${imdbID}&apikey=64f1e89c` // Use the apiKey here
       );
       const data = await response.json();
 
@@ -68,7 +68,7 @@ const MovieSearchApp = () => {
   // Starts the JSX block that defines the components UI. This is where the app's layout and functionality are defined.
   return (
     <div style={{ textAlign: "center", marginTop: "50px" }}>
-      <h1>Movie Search App</h1>
+      <h1>Corptechs Movie Search</h1>
 
       {/* This is a text input where the user enters there movie search and a button that triggers the searchMovies function. */}
       <input

@@ -18,7 +18,7 @@ const Counter = () => {
   return (
     <div className="container">
       {/* displays the h1 text My Counter App on the UI */}
-      <h1>My Counter App</h1>
+      <h1>Corptechs counter</h1>
       {/* Dispplays the current value of count inside of the h2 element */}
       <h2>{count}</h2>
 

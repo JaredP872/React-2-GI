@@ -29,7 +29,7 @@ const Navbar = () => {
             to="/movie-search"
             style={{ color: "white", textDecoration: "none" }}
           >
-            Movie Search
+            Corptechs Movie Search
           </Link>
         </li>
 
@@ -39,14 +39,14 @@ const Navbar = () => {
             to="/counter"
             style={{ color: "white", textDecoration: "none" }}
           >
-            Counter App
+            Corptechs counter
           </Link>
         </li>
 
         {/* The link to my todo list app*/}
         <li>
           <Link to="/todo" style={{ color: "white", textDecoration: "none" }}>
-            To-Do List
+            Corptechs To-Do list
           </Link>
         </li>
       </ul>
